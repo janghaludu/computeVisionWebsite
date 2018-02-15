@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en" style="background-color: #F5F5F5;">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114044419-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-114044419-1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/f/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/f/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/f/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/f/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/f/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/f/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/f/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/f/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/f/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="assets/f/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/f/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/f/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/f/favicon-16x16.png">
+    <link rel="manifest" href="assets/f/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/f/ms-icon-144x144.png">
+    <!-- build:css -->
+    <link rel="stylesheet" href="./css/bulma.css">
+    <link rel="stylesheet" href="css/headline.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- endbuild -->
+    <title>Compute Vision</title>
+    <style>
+
+
+
+        .demo-browser-author {
+            background: url(assets/xbox/0.png) center no-repeat;
+            border: 3px solid #ffffff;
+            display: block;
+            height: 256px;
+            margin: 0 auto;
+            width: 256px;
+            border-radius: 50%;
+        }
+
+        .demo-browser-google {
+            background: url(assets/google/0.png) center no-repeat;
+            border: 3px solid #ffffff;
+            display: block;
+            height: 256px;
+            margin: 0 auto;
+            width: 256px;
+            border-radius: 50%;
+        }
+
+        .demo-browser-content {
+            /*background-color: #34495e;*/
+            overflow: hidden;
+            padding: 21px 0 0;
+            border-radius: 0 0 6px;
+        }
+        .demo-browser-content > img {
+            border: 6px solid black;
+            margin: 0 8px 20px 8px;
+            width: 146px;
+        }
+
+
+    </style>
+</head>
+<body style="background-color: #F5F5F5">
+
+    <section class="section" id="cta">
+        <div class="container">
+            <div class="is-flex cta has-text-centered">
+                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/108178-200.png" alt="Compas" style="width:200px;">
+                <h1 class="title" style="padding-bottom: 20px;">Similar Logo Finder</h1>
+                <h2 class="subtitle" style="font-size: 16px;">Powered by <a href="https://quickcompany.in" > Quickcompany </a></h2>
+                <div class="tabs is-centered is-medium is-toggle is-fullwidth">
+                    <ul>
+                        <li class="is-active" id="url">
+                            <a>
+                                <span class="icon is-small"><i class="fab fa-safari"></i></span>
+                                <span>Enter Site URL</span>
+                            </a>
+                        </li>
+                        <li id="image">
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-image"></i></span>
+                                <span>Upload An Image</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-actions">
+                    <div id="url-content" class="is-flex cta has-text-centered tab-content is-active">
+                        <p style="padding-bottom: 20px;">Search for similar designs from the logos of top million websites</p>
+                        <br>
+                        <div class="field" id="searchContainer">
+                            <div class="control is-medium autocomplete">
+                                <input class="input is-medium" autocomplete="off" id="search" type="text" placeholder="Enter a website URL Eg:instagram.com">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="image-content" class="tab-content">
+                        <p>Upload your design / logo for similar logos. Photos Bad!</p>
+                        <br>
+                        <div class="file-drop-area">
+                            <span class="fake-btn">Choose file</span>
+                            <span class="file-msg js-set-number">Or Drag and Drop Files here</span>
+                            <input class="file-input" type="file" multiple>
+                        </div>
+                        <canvas id="canvasu" class="center" style="visibility: hidden; position: absolute"></canvas>
+                        <div class="inter" style="padding-left: 100px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="more-tools" style="background-color: #dcdde1;">
+        <div class="container">
+            <div class="columns">
+                <div class="column has-text-centered">
+                    <img src="assets/ts.png" alt="Compas" style="width:150px;">
+
+                    <h2 class="subtitle">Find Logos Similar to</h2>
+                    <p>Popular Brands From The  <br>Top Million Websites</p>
+                    <br>
+                    <a class="button is-info" onclick="similarLogo()">Try Now</a>
+                </div>
+                <div class="column has-text-centered">
+                     <img src="assets/knot.png" alt="Chat"  style="width:150px;">
+                    <h2 class="subtitle">Sanity Check</h2>
+                    <p>for Uniqueness / Freshness <br> of your Logo or Design </p>
+                    <br>
+                    <a class="button is-info" onclick="imageUpload()">Try Now</a>
+                </div>
+                <div class="column has-text-centered">
+                     <img src="assets/3.png" alt="Chat"  style="width:150px;">
+                    <h2 class="subtitle">Explore Logos</h2>
+                    <p>based on Color <br>  Profiles (Desktop Only) </p>
+                    <br>
+                    <a class="button is-info" href="colorpicker.html">Try Now</a>
+                </div>
+                <div class="column has-text-centered">
+                     <img src="assets/4.png" alt="Pensils"  style="width:150px;">
+                    <h2 class="subtitle">Logo Generator</h2>
+                    <p>using Generative <br>Adversarial Networks</p>
+                    <br>
+                    <a class="button is-info" disabled> Trying </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section >
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <div class="columns is-centered">
+              <div class="column is-10">
+                  <h1 class="title" style="font-size: 40px;">Some Results</h1>
+                  <h4 class="text-center" style="font-size: 30px;"> Shape Similarity </h4>
+
+                  <p class="text-center" style="font-size: 20px;">Works best with Simple - eg. pitchfork.com, Symmetric - eg. walmart.com and Common - eg. khanacademy.org shapes. </p>
+                  <br>
+                  <div class="demo-browser-author"></div>
+                  <div class="demo-browser-content text-center">
+                    <img src="assets/xbox/1.png" alt=""/>
+                    <img src="assets/xbox/2.png" alt=""/>
+                    <img src="assets/xbox/3.png" alt=""/>
+                    <img src="assets/xbox/4.png" alt=""/>
+                    <img src="assets/xbox/5.png" alt=""/>
+                    <img src="assets/xbox/6.png" alt=""/>
+                    <img src="assets/xbox/7.png" alt=""/>
+                    <img src="assets/xbox/8.png" alt=""/>
+                    <img src="assets/xbox/9.png" alt=""/>
+                    <img src="assets/xbox/10.png" alt=""/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section style="background-color: #dcdde1;">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="columns is-centered">
+            <div class="column is-10">
+                <h1 class="title" style="font-size: 40px;"> Color Similarity </h1>
+              <p class="text-center" style="font-size: 20px;">Mostly Harmless</p>
+              <br>
+              <div class="demo-browser-google"></div>
+              <div class="demo-browser-content text-center">
+                <img src="assets/google/1.png" alt=""/>
+                <img src="assets/google/2.png" alt=""/>
+                <img src="assets/google/3.png" alt=""/>
+                <img src="assets/google/4.png" alt=""/>
+                <img src="assets/google/5.png" alt=""/>
+                <img src="assets/google/6.png" alt=""/>
+                <img src="assets/google/7.png" alt=""/>
+                <img src="assets/google/8.png" alt=""/>
+                <img src="assets/google/9.png" alt=""/>
+                <img src="assets/google/10.png" alt=""/>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="columns is-centered">
+            <div class="column is-10">
+                <h1 class="title" style="font-size: 40px;"> Discover Logos by Color Profiles </h1>
+              <p class="text-center" style="font-size: 20px;">Desktop Only (Beta)</p>
+              <br>
+              <a href="colorpicker.html"> <img src="assets/cpicker.png" alt="" style="width: 800px; border-bottom: solid black 3px;"/></a>
+              <br> <br> <br>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="background-color: #dcdde1;">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="columns is-centered">
+            <div class="column is-10">
+              <h1 class="title" style="font-size: 40px;">What Next ?</h1>
+
+              <ul class="text-center" style="padding-left: 30px;">
+              <p style="font-size: 22px; margin-bottom: 2px;">  Improvements and Fixes </p>
+                <p style="font-size: 22px; margin-bottom: 2px;"> Add curated collections of logos and designs </p>
+                <p style="font-size: 22px; margin-bottom: 2px;"> Deep Learning experiments with tagged illustration data sets </p>
+                <p style="font-size: 22px; margin-bottom: 2px;">Logo Generator using Generative Adversarial Networks</p>
+              </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="columns is-centered">
+            <div class="column is-10">
+              <h1 class="title" style="font-size: 40px;"> Made Possible By </h1>
+
+              <div class="demo-browser-content text-center" style="padding-left: 60px;">
+                <img src="assets/poss/1.png" alt="" style="height:144px;"/>
+                <img src="assets/poss/2.png" alt="" style="height:144px;"/>
+                <img src="assets/poss/3.jpg" alt=""  style="height:144px;"/>
+                <img src="assets/poss/4.png" alt=""  style="height:144px;"/>
+                <img src="assets/poss/5.png" alt=""  style="height:144px;"/>
+                <img src="assets/poss/6.png" alt=""  style="height:144px;"/>
+                <img src="assets/poss/7.png" alt=""  style="height:144px;"/>
+                <img src="assets/poss/8.png" alt=""  style="height:144px;"/>
+                <img src="assets/poss/9.png" alt=""  style="height:144px;"/>
+                <img src="assets/poss/10.png" alt=""  style="height:144px;"/>
+              </div>
+              <a href="http://clearbit.com" target="_blank"> Logos provided by Clearbit </a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="background-color: #dcdde1;">
+        <div class="hero-body">
+          <div class="column is-flex cta has-text-centered">
+                <h1 class="title" style="font-size: 40px;"> Found this Useful ? </h1>
+
+                <p><i>Contact <a href="mailto:harsha@quickcompany.in"> us </a> if you'd like to use these services for your image databases.</i></p>
+                <p><i>Please consider subscribing / donating to keep this project sustainable.</i></p>
+                <div class="column is-flex cta has-text-centered">
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="is-flex cta has-text-centered">
+                      <input type="hidden" name="cmd" value="_s-xclick">
+                      <input type="hidden" name="hosted_button_id" value="ABKF9HNFXTKZN">
+                      <br>
+                      <div class="field">
+                          <div class="control">
+                              <div class="select is-primary">
+                                  <select name="os0" id="opt">
+                                      <option selected disabled>Payment Options</option>
+                                      <option value="Peanuts">Peanuts : $1.00 USD - monthly</option>
+                                      <option value="Generous">Generous : $2.00 USD - monthly</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <input type="hidden" name="currency_code" value="USD">
+                      <input style="margin-top: 20px" type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_subscribeCC_LG.gif" name="submit" alt="PayPal – The safer, easier way to pay online!">
+                      <img style="margin-top: 20px" alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif">
+                  </form>
+                  <p style="margin-top: 160px; margin-bottom: 20px;"><b>Bitcoin Address</b>: 14BrmwzSQboAZdTW6ZxxEFPPnBV3oGamGX</p>
+                  <!-- <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=14BrmwzSQboAZdTW6ZxxEFPPnBV3oGamGX"> -->
+                </div>
+          </div>
+        </div>  
+    </section>
+
+    <!-- build:js -->
+    <script src="js/aa.knockout.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/autocomplete.js"></script>
+    <script src="js/file-upload.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/script.js"></script>
+    <!-- endbuild -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</body>
+</html>

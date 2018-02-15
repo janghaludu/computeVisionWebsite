@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en" style="background-color: #F5F5F5;">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114044419-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-114044419-1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/f/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/f/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/f/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/f/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/f/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/f/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/f/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/f/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/f/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="assets/f/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/f/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/f/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/f/favicon-16x16.png">
+    <link rel="manifest" href="assets/f/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/f/ms-icon-144x144.png">
+    <link rel="stylesheet" href="./styles/bundle.css">
+    <title>Compute Vision</title>
+    <style>
+
+
+
+        .demo-browser {
+            background: #2c3e50 url(../img/demo/browser.png) 0 0 no-repeat;
+            background-size: 659px 42px;
+            color: #ffffff;
+            margin: 0 41px 140px 0;
+            padding-top: 42px;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .demo-browser-author {
+            background: url(https://logo.clearbit.com/xbox.com?s=256) center no-repeat;
+            border: 3px solid #ffffff;
+            display: block;
+            height: 256px;
+            margin: 0 auto;
+            width: 256px;
+            border-radius: 50%;
+        }
+
+        .demo-browser-google {
+            background: url(https://logo.clearbit.com/google.com?s=256) center no-repeat;
+            border: 3px solid #ffffff;
+            display: block;
+            height: 256px;
+            margin: 0 auto;
+            width: 256px;
+            border-radius: 50%;
+        }
+
+        .demo-browser-content {
+            /*background-color: #34495e;*/
+            overflow: hidden;
+            padding: 21px 0 0;
+            border-radius: 0 0 6px;
+        }
+        .demo-browser-content > img {
+            border: 6px solid black;
+            margin: 0 8px 20px 8px;
+            width: 146px;
+        }
+
+
+    </style>
+</head>
+<body style="background-color: #F5F5F5">
+
+<section class="section" id="cta">
+    <div class="container">
+        <div class="is-flex cta has-text-centered">
+            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/108178-200.png" alt="Compas" style="width:250px;">
+            <h1 class="title" style="padding-bottom: 20px;">Similar Logo Finder</h1>
+            <h2 class="subtitle">Powered by <a href="https://quickcompany.in" > Quickcompany </a></h2>
+            <div class="tabs is-centered is-medium is-toggle is-fullwidth">
+                <ul>
+                    <li class="is-active" id="url">
+                        <a>
+                            <span class="icon is-small"><i class="fab fa-safari"></i></span>
+                            <span>Enter A URL</span>
+                        </a>
+                    </li>
+                    <li id="image">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-image"></i></span>
+                            <span>Upload An Image</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-actions">
+                <div id="url-content" class="is-flex cta has-text-centered tab-content is-active">
+                    <p style="padding-bottom: 20px;">Search for similar designs from the logos of top million websites</p>
+                    <br>
+                    <div class="field" id="searchContainer">
+                        <div class="control is-medium autocomplete">
+                            <input class="input is-medium" autocomplete="off" id="search" type="text" placeholder="Enter a website URL Eg:spotify.com">
+                        </div>
+                    </div>
+                </div>
+                <div id="image-content" class="tab-content">
+                    <p>Upload your design / logo for similar logos</p>
+                    <br>
+                    <div class="file-drop-area">
+                        <span class="fake-btn">Choose files</span>
+                        <span class="file-msg js-set-number">or drag and drop files here</span>
+                        <input class="file-input" type="file" multiple>
+                    </div>
+                    <canvas id="canvasu" class="center" style="visibility: hidden; position: absolute"></canvas>
+                    <div class="inter" style="padding-left: 100px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="more-tools">
+    <div class="container">
+        <div class="columns">
+            <div class="column has-text-centered">
+                <img src="https://s3.amazonaws.com/aws-website-linkdot-63uzi/images/tsbig.png" alt="Compas" style="width:200px;">
+
+                <h2 class="subtitle">Find Logos Similar to</h2>
+                <p>Popular Brands From The  <br>Top Million Websites</p>
+                <br>
+                <a class="button is-info" onclick="similarLogo()">Try Now</a>
+            </div>
+            <div class="column has-text-centered">
+                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/316351-200.png" alt="Chat"  style="width:200px;">
+                <h2 class="subtitle">Sanity Check</h2>
+                <p>for Uniqueness / Freshness <br> of your Logo or Design </p>
+                <br>
+                <a class="button is-info" onclick="imageUpload()">Try Now</a>
+            </div>
+            <div class="column has-text-centered">
+                <img src="https://png.icons8.com/color/1600/color-palette.png" alt="Chat"  style="width:200px;">
+                <h2 class="subtitle">Explore Logos</h2>
+                <p>based on different <br> Color Profiles</p>
+                <br>
+                <a class="button is-info" href="colorpicker.html">Try Now</a>
+            </div>
+            <div class="column has-text-centered">
+                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/217780-200.png" alt="Pensils"  style="width:200px;">
+                <h2 class="subtitle">Logo Generator</h2>
+                <p>using Generative <br>Adversarial Networks</p>
+                <br>
+                <a class="button is-info" disabled>Coming Soonish</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <h1 class="title">Some Results</h1>
+                    <h2 class="text-center subtitle">Shape Similarity</h2>
+                    <p class="text-center"><i>Sometimes brilliant, mostly good, at times rubbish!</i></p>
+                    <br>
+                    <div class="demo-browser-author"></div>
+                    <div class="demo-browser-content text-center">
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/2TNKOTA0L1P0ZVYX" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/XKLCUA5NPFN71RUO" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/Z2LI7EP7X305X7I5" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/FDG4SD34NFD87JPD" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/0J2YJ8DZUSW0UKY3" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/KYMN5G1M03E02KU4" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/Y8UFYRUBZWKXQR3Q" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/48AHLMY3JZ1S6GCB" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/0138LEUZDX9IWWGZ" alt=""/>
+                        <img src="https://s3.ap-south-1.amazonaws.com/clogos/1FOAV1X6O5N6OM8W" alt=""/>
+                    </div>
+                    <br>
+                    <h1 class="text-center title">Color Similarity</h1>
+                    <p class="text-center"><i>Mostly Harmless</i></p>
+                    <br>
+                    <div class="demo-browser-google"></div>
+                    <div class="demo-browser-content text-center">
+                        <img src="https://logo.clearbit.com/chromeunboxed.com?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/searchengineways.com?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/siyli.org?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/flashbrazil.com?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/g-ads.org?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/wearesquared.de?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/chromecasthelp.net?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/idope.se?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/eventtus.com?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/ibay.com.mv?s=256" alt=""/>
+                    </div>
+                    <br>
+                    <h1 class="text-center title">Color Picker (Beta)</h1>
+                    <p class="text-center"><i>Fun tool to play around with.</i></p>
+                    <br>
+                    <img src="https://s3.amazonaws.com/aws-website-computevision-011tc/img/picko.png" alt="" style="width: 800px; border-bottom: solid black 3px;"/>
+                    <br> <br> <br>
+                    <h1 class="title">What Next?</h1>
+
+                    <ul class="text-center">
+                        <p>Add curated collections of logos and designs</p>
+                        <p>Explore Deep Learning with tagged data sets</p>
+                        <p>Logo Generator using Generative Adversarial Networks</p>
+                    </ul>
+
+                    <br><br>
+                    <h1 class="title">Made Possible By</h1>
+
+                    <div class="demo-browser-content text-center">
+                        <img src="https://logo.clearbit.com/quickcompany.in?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/sci-hub.tw?s=256" alt=""/>
+                        <img src="https://www.pearsonhighered.com/assets/bigcovers/0/1/3/0/0130307963.jpg" alt=""
+                             style="height: 144px;"/>
+                        <img src="https://numfocus.org/wp-content/uploads/2016/07/numpy-logo-300.png" alt="" style="height: 144px;"/>
+
+                        <img src="https://logo.clearbit.com/opencv.org?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/python.org?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/clearbit.com?s=256" alt=""/>
+                        <img src="https://logo.clearbit.com/falconframework.org?s=256" alt=""/>
+                        <img src="https://avatars3.githubusercontent.com/u/897180" alt="" style="height: 144px;"/>
+                        <img src="https://devblogs.nvidia.com/wp-content/uploads/2017/10/numba_blue_icon_rgb.png" alt="" style="height: 144px;"/>
+                    </div>
+
+
+                    <h1 class="title">If you liked this...</h1>
+                    <div class="column is-flex cta has-text-centered">
+
+                        <p><i>Contact <a href="mailto:harsha@quickcompany.in"> us</a> if you'd like to use these services for your image databases.</i></p>
+                        <p><i>Please consider subscribing / donating to keep this project flourishing.</i></p>
+                        <div class="column is-flex cta has-text-centered">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="is-flex cta has-text-centered">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="ABKF9HNFXTKZN">
+                                <br>
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="select is-primary">
+                                            <select name="os0" id="opt">
+                                                <option selected disabled>Payment Options</option>
+                                                <option value="Peanuts">Peanuts : $1.00 USD - monthly</option>
+                                                <option value="Generous">Generous : $2.00 USD - monthly</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="currency_code" value="USD">
+                                <input style="margin-top: 20px" type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_subscribeCC_LG.gif" name="submit" alt="PayPal – The safer, easier way to pay online!">
+                                <img style="margin-top: 20px" alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif">
+                            </form>
+                            <p style="margin-top: 150px"><b>Bitcoin Wallet</b>: 14BrmwzSQboAZdTW6ZxxEFPPnBV3oGamGX</p>
+                            <br>
+                            <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=14BrmwzSQboAZdTW6ZxxEFPPnBV3oGamGX">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<script src="./scripts/bundle.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</body>
+</html>

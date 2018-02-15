@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114044419-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-114044419-1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- build:css -->
+    <link rel="stylesheet" href="./css/bulma.css">
+    <link rel="stylesheet" href="./css/bulma-steps.min.css">
+    <link rel="stylesheet" href="./css/colorpicker.css">
+    <!-- endbuild -->
+    <title>Color Picker</title>
+    <style>
+
+
+        img {
+            background:#FF2400; opacity:0.7;
+        }
+    </style>
+
+<!--     Barely Modified Fork of  Color Picker by Corey Megown from Codepen
+ -->    
+
+
+     <!--
+Copyright (c) 2018 by Corey Megown (https://codepen.io/cmegown/pen/VaMzQq)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+
+
+<!--     Fork of Test Tubes Still Life by Adam Henley from Codepen. Most of the modification work done by Anshul Sanghi.
+        I added borders and the distinctive top to the testtubes and fixed the liquid at bottom not aligning with tube end issue.
+ -->
+
+<!--
+Copyright (c) 2018 by Adam Henley (https://codepen.io/adamazing/pen/fciFl)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+</head>
+<body onresize="updateLayout()">
+<section id="desktop" data-bind="repeat: desktop() && 1">
+    <div class="columns">
+        <div class="column" id="color-palette">
+            <h1>Pick Colors</h1>
+            <div class="pallete-container">
+                <div class="material-color-picker">
+                    <div class="material-color-picker__left-panel">
+                        <ol class="color-selector" data-bind="foreach: materialColors">
+                            <li>
+                                <input name="material-color" type="radio" data-bind="attr: { id: 'materialColor' + $index() }, checked: selectedColor, value: color">
+                                <label data-bind="attr: { for: 'materialColor' + $index(), title: color }, style: { 'color': $data.variations[4].hex }"></label>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="material-color-picker__right-panel" data-bind="foreach: materialColors">
+                        <div class="color-palette-wrapper" data-bind="css: { 'js-active': selectedColor() === color }, attr: { 'data-base-color': color}">
+                            <ol class="color-palette" data-bind="foreach: variations">
+                                <li id="clipboardItem" class="color-palette__item" data-bind="attr: { 'data-clipboard-text': hex }, style: { 'background-color': hex }">
+                                    <span data-bind="text: weight"></span>
+                                    <span data-bind="text: hex"></span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <section class="sectiona" style="padding-top: 90px;">
+                <div class='msg'>
+                    <h1>Pick Colors, Adjust Levels, Find Logos</h1>
+                    <p style="font-size: 18px;">Choose Colors from the Palette on left. You can select a color by clicking it and unselect it by clicking again. Adjust the levels of test tubes after that to choose color percentages by clicking or dragging.</p>
+
+
+                </div>
+                <!--                   <p class="banner" style="text-align: center;" onclick="submit()">View Results</a>
+                 -->      
+
+
+                <div>
+                    <a href="https://clearbit.com" target="_blank"> Logos provided by Clearbit </a>
+                </div>
+                 </section>
+            <ul class="rack" id="rack" style="padding-top: 90px;">
+
+            </ul>
+        </div>
+        <div class="column" id="submit" style="overflow: hidden;">
+
+            <div class="logo masonry" data-bind="foreach: shapeResults" style="flex-wrap: wrap;" id="masonry">
+                <img class="item" data-bind="attr: { 'src': url }" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section id="mobile" data-bind="repeat: mobile() && 1">
+    <div class="steps">
+        <div class="step-item is-completed is-success">
+            <div class="step-marker">1</div>
+        </div>
+        <div class="step-item is-active">
+            <div class="step-marker">2</div>
+        </div>
+        <div class="step-item">
+            <div class="step-marker">3</div>
+        </div>
+        <div class="steps-content" style="margin-top: 150px">
+            <div class="step-content has-text-centered is-active">
+                <div class="column" id="color-palette" style="max-width: 550px;">
+                    <h1 class='retroshadow'>Pick Colors</h1>
+                    <div class="pallete-container">
+                        <div class="material-color-picker">
+                            <div class="material-color-picker__left-panel">
+                                <ol class="color-selector" data-bind="foreach: materialColors">
+                                    <li>
+                                        <input name="material-color" type="radio" data-bind="attr: { id: 'materialColor' + $index() }, checked: selectedColor, value: color" >
+                                        <label data-bind="attr: { for: 'materialColor' + $index(), title: color }, style: { 'color': $data.variations[4].hex }"></label>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="material-color-picker__right-panel" data-bind="foreach: materialColors">
+                                <div class="color-palette-wrapper" data-bind="css: { 'js-active': selectedColor() === color }, attr: { 'data-base-color': color}">
+                                    <ol class="color-palette" data-bind="foreach: variations">
+                                        <li id="clipboardItem" class="color-palette__item" data-bind="attr: { 'data-clipboard-text': hex }, style: { 'background-color': hex }">
+                                            <span data-bind="text: weight"></span>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step-content has-text-centered">
+                <div class="column" style="display:flex;align-items: center;justify-content: center">
+                    <ul class="rack" id="rack">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="step-content has-text-centered">
+                <div class="column" id="submit">
+                    <canvas id="myCanvas" width="300" height="300">
+                    </canvas>
+                    <button onclick="submit()">Continue</button> -->
+<!--                 </div>
+            </div>
+        </div>
+        <div class="steps-actions">
+            <div class="steps-action">
+                <a href="#" data-nav="previous" class="button is-light" onclick="scrollTop()">previous</a>
+            </div>
+            <div class="steps-action">
+                <a href="#" data-nav="next" class="button is-light" onclick="scrollTop()">Next</a>
+            </div>
+        </div>
+    </div>
+</section> -->
+<script>
+    function scrollTop() {
+        window.scroll({top: 0, left: 0, behavior: 'smooth' });
+    }
+</script>
+<!-- build:js -->
+<script src="js/aa.knockout.min.js"></script>
+<script src="js/bulma-steps.min.js"></script>
+<script src="js/colorpicker.js"></script>
+<!-- endbuild -->
+</body>
+</html>

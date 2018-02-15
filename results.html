@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" style="background-color: #F5F5F5">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114044419-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-114044419-1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- build:css -->
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="css/results.css">
+    <!-- endbuild -->
+    <title>Results</title>
+</head>
+<body onload="fetchResults()" style="background-color: #F5F5F5">
+
+    <section class="results" style="margin-top: 100px">
+        <div class="columns has-text-centered" style="justify-content: center">
+            <img data-bind="attr: { 'src': queryImage }" alt=""  style="max-height: 200px;">
+        </div>
+        <div class="columns">
+            <div class="column">
+                <h1 class="title is-centered has-text-centered">Shape Results</h1>
+                <div class="logo masonry" data-bind="foreach: shapeResults" style="flex-wrap: wrap;" id="masonry">
+                    <img class="item" data-bind="attr: { 'src': url }" alt="">
+                </div>
+            </div>
+            <div class="column">
+                <h1 class="title is-centered has-text-centered">Color Results</h1>
+                <div class="logo masonry" data-bind="foreach: colorResults" style="flex-wrap: wrap;" id="masonry">
+                    <img class="item" data-bind="attr: { 'src': url }" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- build:js -->
+    <script src="js/aa.knockout.min.js"></script>
+    <!-- endbuild -->
+    <script>
+        const bindings = {shapeResults: ko.observable([]), colorResults: ko.observable([]), queryImage: ko.observable("")};
+        ko.applyBindings(bindings);
+
+        const fetchResults = function () {
+            const e = JSON.parse(sessionStorage.getItem("results"));
+            const n = sessionStorage.getItem("queryImage");
+            bindings.shapeResults(e.slice(0, 20));
+            bindings.colorResults(e.slice(20, 40));
+            bindings.queryImage(n);
+        };
+    </script>
+</body>
+</html>

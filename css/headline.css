@@ -1,0 +1,19 @@
+.headline {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.logo-container {
+    letter-spacing: -2px;
+    font: 600 60px/70px "Helvetica Neue", Lato, Arial, sans-serif;
+    margin: 10px 0;
+}
+
+.logo {
+    height: 200px;
+    text-indent: -9999em;
+    width: 200px;
+    background: url('../assets/logo.png') center 0 / 200px 200px no-repeat;
+    margin: 0 auto 26px;
+    overflow: hidden;
+}

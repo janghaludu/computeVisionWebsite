@@ -1,0 +1,18 @@
+.masonry {
+    -webkit-column-count: 5;
+    column-count: 5;
+    -webkit-column-gap: 10px;
+    column-gap: 10px
+}
+
+.item {
+    background-color: #eee;
+    display: inline-block;
+    margin: 0 0 15px;
+    width: 100%;
+    height: auto
+}
+
+.column {
+    padding: 20px
+}
