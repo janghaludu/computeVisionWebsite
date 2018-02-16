@@ -18,13 +18,13 @@
 const imageUpload = () => {
     window.scroll({top: 0, left: 0, behavior: 'smooth' });
     const event = new Event('click');
-    const el = document.getElementById('image');
-    el.dispatchEvent(event);
+    document.getElementById('image').dispatchEvent(event);
 };
 
 const similarLogo = () => {
     window.scroll({top: 0, left: 0, behavior: 'smooth' });
     const event = new Event('click');
-    const el = document.getElementById('url');
-    el.dispatchEvent(event);
+    document.getElementById('url').dispatchEvent(event);
+    const focus = new Event('focus');
+    document.getElementById("search").dispatchEvent(focus);
 };
