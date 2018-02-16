@@ -33,6 +33,7 @@ const autocomplete = inp => {
 
     closeAllLists();
     if (!val) {
+        document.getElementById("erroro").style.display = "none";
         closeAllLists();
     }
     currentFocus = -1;
@@ -88,6 +89,8 @@ const autocomplete = inp => {
 
 
             closeAllLists();
+            document.getElementById("dvLoading").style.display = "block";
+
             getResults();
 
         });
@@ -123,7 +126,6 @@ const autocomplete = inp => {
 };
 
 const getResults = () => {
-
     let string = "https://ml2wqc35jk.execute-api.ap-south-1.amazonaws.com/api/website/?website=";
     string += document.getElementById("search").value;
 
@@ -154,21 +156,32 @@ const ajax = new XMLHttpRequest();
 let lastKeyUp = 0;
 let cb;
 input.onkeyup = e => {
-    document.querySelector('.autocomplete').classList.add('is-loading');
-    lastKeyUp = e.timeStamp;
-    if (e.timeStamp - lastKeyUp > delay) {
-        console.log(input.value);
-        ajax.open("GET", `https://autocomplete.clearbit.com/v1/companies/suggest?query=${input.value}`, true);
-        ajax.send();
+    if (document.querySelector('#search').value.length) {
+        document.getElementById("erroro").style.display = "none";
+        document.querySelector('.autocomplete').classList.add('is-loading');
+        lastKeyUp = e.timeStamp;
+        if (e.timeStamp - lastKeyUp > delay) {
+            document.getElementById("erroro").style.display = "none";
+            console.log(input.value);
+            ajax.open("GET", `https://autocomplete.clearbit.com/v1/companies/suggest?query=${input.value}`, true);
+            ajax.send();
 
-        ajax.onload = () => {
-            arr = JSON.parse(ajax.responseText);
-            console.log(arr.length);
-            autocomplete(document.getElementById("search"));
-            document.querySelector('.autocomplete').classList.remove('is-loading');
+            ajax.onload = () => {
+                arr = JSON.parse(ajax.responseText);
+                console.log(arr.length);
+                autocomplete(document.getElementById("search"));
+                document.querySelector('.autocomplete').classList.remove('is-loading');
+            }
+        } else {
+            cb = setTimeout(doSearch, delay)
         }
     } else {
-        cb = setTimeout(doSearch, delay)
+        var zz = document.getElementsByClassName("autocomplete-items");
+                for (let i = 0; i < zz.length; i++) {
+                    
+                        zz[i].parentNode.removeChild(zz[i]);
+                    
+                }
     }
 };
 
@@ -178,8 +191,19 @@ const doSearch = () => {
 
     ajax.onload = () => {
         arr = JSON.parse(ajax.responseText);
+        if (arr.length > 0) {
         autocomplete(document.getElementById("search"));
         document.querySelector('.autocomplete').classList.remove('is-loading');
+        } else {
+            var xx = document.getElementsByClassName("autocomplete-items");
+                for (let i = 0; i < xx.length; i++) {
+                    
+                        xx[i].parentNode.removeChild(xx[i]);
+                    
+                }
+            document.getElementById("erroro").style.display = "block";
+        }
+
     };
 };
 
@@ -204,3 +228,7 @@ const getDataUri = (url, callback) => {
 
     image.src = url;
 };
+
+function remErr() {
+    document.getElementById("erroro").style.display = "none";
+}

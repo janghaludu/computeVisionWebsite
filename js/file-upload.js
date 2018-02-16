@@ -28,6 +28,7 @@ fileInput.addEventListener('change', event => {
         textContainer.innerText = `${filesCount} files selected`;
     }
 
+    document.getElementById("dvLoading").style.display = "block";
     const canvas = document.getElementById('canvasu');
     const img = document.createElement("img");
     const fr = new FileReader(); // FileReader instance

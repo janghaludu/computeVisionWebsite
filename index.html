@@ -10,6 +10,13 @@
         gtag('config', 'UA-114044419-1');
     </script>
     <meta charset="UTF-8">
+    <title>Find Similar Logos</title>
+    <meta name="description" content="Find Similar logos by Shape and Color from the logos of top million websites"/>
+    <meta property="og:title" content="Compute Vision">
+    <meta property="og:description" content="Find Similar logos by Shape and Color from the logos of top million websites.">
+    <meta property="og:image" content="http://compute.vision/assets/pikker.png">
+    <meta property="og:url" content="http://compute.vision">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -34,9 +41,20 @@
     <link rel="stylesheet" href="css/headline.css">
     <link rel="stylesheet" href="./css/styles.css">
     <!-- endbuild -->
-    <title>Compute Vision</title>
     <style>
 
+
+        #dvLoading {
+           background: url(assets/sfloading.gif) no-repeat center center;
+           height: 100px;
+           width: 100px;
+           display: none;
+           /*position: fixed;
+           z-index: 1000;
+           left: 50%;
+           top: 50%;
+           margin: -25px 0 0 -25px;*/
+        }
 
 
         .demo-browser-author {
@@ -91,7 +109,7 @@
                             </a>
                         </li>
                         <li id="image">
-                            <a>
+                            <a onclick="remErr()">
                                 <span class="icon is-small"><i class="fas fa-image"></i></span>
                                 <span>Upload An Image</span>
                             </a>
@@ -113,14 +131,17 @@
                         <br>
                         <div class="file-drop-area">
                             <span class="fake-btn">Choose file</span>
-                            <span class="file-msg js-set-number">Or Drag and Drop Files here</span>
+                            <span class="file-msg js-set-number">Or Drag and Drop a File ( jpg / png ) here</span>
                             <input class="file-input" type="file" multiple>
                         </div>
                         <canvas id="canvasu" class="center" style="visibility: hidden; position: absolute"></canvas>
                         <div class="inter" style="padding-left: 100px"></div>
                     </div>
                 </div>
+                <div id="dvLoading"></div>
+                <p id="erroro" style="display:none; color:red;"> We don't have that website. How about uploading an image ? </p>
             </div>
+
         </div>
     </section>
 
@@ -164,10 +185,11 @@
           <div class="container has-text-centered">
             <div class="columns is-centered">
               <div class="column is-10">
-                  <h1 class="title" style="font-size: 40px;">Some Results</h1>
+                  <a href="https://imgur.com/a/RYfZy" target="_blank">  <h1 class="title" style="font-size: 40px;">Some Results</h1> </a>
                   <h4 class="text-center" style="font-size: 30px;"> Shape Similarity </h4>
 
-                  <p class="text-center" style="font-size: 20px;">Works best with Simple - eg. pitchfork.com, Symmetric - eg. walmart.com and Common - eg. khanacademy.org shapes. </p>
+                  <p class="text-center" style="font-size: 20px;"> Works best with Simple - eg. pitchfork.com, Symmetric - eg. walmart.com and Common - eg. khanacademy.org shapes. </p>
+        
                   <br>
                   <div class="demo-browser-author"></div>
                   <div class="demo-browser-content text-center">
@@ -256,6 +278,8 @@
           <div class="columns is-centered">
             <div class="column is-10">
               <h1 class="title" style="font-size: 40px;"> Made Possible By </h1>
+
+                        <p class="text-center" style="font-size: 20px;"><a href="http://www.ppgia.pucpr.br/~alekoe/AM/2009/private/veltkamp99stateart.pdf"> This </a>, <a href="https://hal.archives-ouvertes.fr/hal-00446037/document"> this </a> and <a href="http://nana.lecturer.pens.ac.id/index_files/referensi/computer_vision/Computer%20Vision.pdf"> this </a> helped me gain some foothold into this problem. </p>
 
               <div class="demo-browser-content text-center" style="padding-left: 60px;">
                 <img src="assets/poss/1.png" alt="" style="height:144px;"/>

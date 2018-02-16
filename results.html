@@ -27,18 +27,19 @@
         </div>
         <div class="columns">
             <div class="column">
-                <h1 class="title is-centered has-text-centered">Shape Results</h1>
+                <h1 class="title is-centered has-text-centered" style="font-size: 40px;">Shape Results</h1>
                 <div class="logo masonry" data-bind="foreach: shapeResults" style="flex-wrap: wrap;" id="masonry">
                     <img class="item" data-bind="attr: { 'src': url }" alt="">
                 </div>
             </div>
             <div class="column">
-                <h1 class="title is-centered has-text-centered">Color Results</h1>
+                <h1 class="title is-centered has-text-centered" style="font-size: 40px;">Color Results</h1>
                 <div class="logo masonry" data-bind="foreach: colorResults" style="flex-wrap: wrap;" id="masonry">
                     <img class="item" data-bind="attr: { 'src': url }" alt="">
                 </div>
             </div>
         </div>
+        <h1 class="title is-centered has-text-centered" style="font-size: 20px;"> Getting Duplicate Results ? Fix is on its way.</h1>
     </section>
 
     <!-- build:js -->
@@ -51,8 +52,8 @@
         const fetchResults = function () {
             const e = JSON.parse(sessionStorage.getItem("results"));
             const n = sessionStorage.getItem("queryImage");
-            bindings.shapeResults(e.slice(0, 20));
-            bindings.colorResults(e.slice(20, 40));
+            bindings.shapeResults(e.slice(0, 10));
+            bindings.colorResults(e.slice(30, 40));
             bindings.queryImage(n);
         };
     </script>
