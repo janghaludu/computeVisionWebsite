@@ -23,8 +23,10 @@ const imageUpload = () => {
 
 const similarLogo = () => {
     window.scroll({top: 0, left: 0, behavior: 'smooth' });
-    const event = new Event('click');
-    document.getElementById('url').dispatchEvent(event);
-    const focus = new Event('focus');
-    document.getElementById("search").dispatchEvent(focus);
+    // const event = new Event('click');
+    document.getElementById('url').click();
+    // const focus = new Event('focus');
+    // document.getElementById("search").dispatchEvent(focus);
+    document.getElementById("search").focus();
+    
 };
