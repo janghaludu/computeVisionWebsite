@@ -89,7 +89,9 @@ body {
 .autocomplete-item .text, .autocomplete-item .url {
     margin-top: 0;
     margin-bottom: 0;
+    overflow: hidden;
 }
+
 
 .center {
     display: block;
