@@ -21,6 +21,14 @@ body {
     #mobile {
         display: block !important;
     }
+
+    .color-palette-wrapper {
+        padding: 0 !important;
+    }
+
+    .color-palette__item {
+        justify-content: center !important;
+    }
 }
 
 img {
@@ -276,7 +284,27 @@ td.edit {
 
 body {
     font-family: sans-serif;
-    padding: 40px;
+    padding: 10px;
+}
+
+@media (min-width: 1000px) {
+    body {
+        padding: 40px;
+    }
+
+    .rack {
+        min-width: 420px;
+        width: 420px;
+    }
+
+    .sectiona {
+        top: 30%;
+        left: 50%;
+        position: absolute;
+        max-width: 440px;
+        transform: translateX(-50%);
+        display: block;
+    }
 }
 
 input.range {
@@ -412,8 +440,6 @@ ul {
 /**Dimensions **/
 .rack {
     margin: auto;
-    min-width: 420px;
-    width: 420px;
     text-align: justify;
     font-size: 0.1px;
     padding-left: 60px;
@@ -591,15 +617,6 @@ h1.retroshadow {
 body {
     font-family: 'Exo', sans-serif;
     /*background: url('https://i.imgur.com/P9KDS9J.png') no-repeat fixed center center / cover;*/
-}
-
-.sectiona {
-    top: 30%;
-    left: 50%;
-    position: absolute;
-    max-width: 440px;
-    transform: translateX(-50%);
-    display: block;
 }
 
 .msg {

@@ -113,7 +113,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         </div>
     </div>
 </section>
-<!-- <section id="mobile" data-bind="repeat: mobile() && 1">
+<section id="mobile" data-bind="repeat: mobile() && 1">
     <div class="steps">
         <div class="step-item is-completed is-success">
             <div class="step-marker">1</div>
@@ -126,14 +126,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         </div>
         <div class="steps-content" style="margin-top: 150px">
             <div class="step-content has-text-centered is-active">
-                <div class="column" id="color-palette" style="max-width: 550px;">
-                    <h1 class='retroshadow'>Pick Colors</h1>
+                <div class="column" id="color-palette">
+                    <h1>Pick Colors</h1>
                     <div class="pallete-container">
                         <div class="material-color-picker">
                             <div class="material-color-picker__left-panel">
                                 <ol class="color-selector" data-bind="foreach: materialColors">
                                     <li>
-                                        <input name="material-color" type="radio" data-bind="attr: { id: 'materialColor' + $index() }, checked: selectedColor, value: color" >
+                                        <input name="material-color" type="radio" data-bind="attr: { id: 'materialColor' + $index() }, checked: selectedColor, value: color">
                                         <label data-bind="attr: { for: 'materialColor' + $index(), title: color }, style: { 'color': $data.variations[4].hex }"></label>
                                     </li>
                                 </ol>
@@ -152,34 +152,69 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 </div>
             </div>
             <div class="step-content has-text-centered">
-                <div class="column" style="display:flex;align-items: center;justify-content: center">
-                    <ul class="rack" id="rack">
+                <div class="column">
+                    <section class="sectiona" style="padding-top: 90px;">
+                        <div class='msg'>
+                            <h1>Pick Colors, Adjust Levels, Find Logos</h1>
+                            <p style="font-size: 18px;">Choose Colors from the Palette on left. You can select a color by clicking it and unselect it by clicking again. Adjust the levels of test tubes after that to choose color percentages by clicking or dragging.</p>
+
+
+                        </div>
+                        <!--                   <p class="banner" style="text-align: center;" onclick="submit()">View Results</a>
+                         -->
+
+
+                        <div>
+                            <a href="https://clearbit.com" target="_blank"> Logos provided by Clearbit </a>
+                        </div>
+                    </section>
+                    <ul class="rack" id="rack" style="padding-top: 90px;">
 
                     </ul>
                 </div>
             </div>
             <div class="step-content has-text-centered">
-                <div class="column" id="submit">
-                    <canvas id="myCanvas" width="300" height="300">
-                    </canvas>
-                    <button onclick="submit()">Continue</button> -->
-<!--                 </div>
+                <div class="column" id="submit" style="overflow: hidden;">
+
+                    <div class="logo masonry" data-bind="foreach: shapeResults" style="flex-wrap: wrap;" id="masonry">
+                        <img class="item" data-bind="attr: { 'src': url }" alt="">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="steps-actions">
             <div class="steps-action">
-                <a href="#" data-nav="previous" class="button is-light" onclick="scrollTop()">previous</a>
+                <a href="#" data-nav="previous" id="prevBtn" class="button is-light" onclick="manageStepperActions(event)">Back</a>
             </div>
             <div class="steps-action">
-                <a href="#" data-nav="next" class="button is-light" onclick="scrollTop()">Next</a>
+                <a href="#" data-nav="next" id="nextBtn" class="button is-light" onclick="manageStepperActions(event)">Next</a>
             </div>
         </div>
     </div>
-</section> -->
+</section>
 <script>
     function scrollTop() {
         window.scroll({top: 0, left: 0, behavior: 'smooth' });
     }
+
+    var counter = 1;
+
+    var manageStepperActions = function manageStepperActions(event) {
+        console.log("Action Taken!");
+
+        if (event.target.getAttribute("id") === "nextBtn") {
+            counter++;
+        } else {
+            counter--;
+        }
+
+        if (counter === 2) {
+            document.getElementById("nextBtn").innerText = "Results";
+        }
+
+        console.log(counter);
+    };
+
 </script>
 <!-- build:js -->
 <script src="js/aa.knockout.min.js"></script>

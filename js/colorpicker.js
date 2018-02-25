@@ -199,8 +199,8 @@ items.forEach(t => {
         t.classList.toggle('selected');
 
         if (selectedColors.length === 8 && t.classList.contains('selected')) {
-            var inst =     document.getElementsByClassName('sectiona')[0];
-            inst.style.paddingTop =    '320px';
+            var inst = document.getElementsByClassName('sectiona')[0];
+            inst.style.paddingTop = '320px';
             // alert('You Can Only Select A Maximum Of 16 Colors');
             // t.classList.toggle('selected');
             // return;
@@ -248,6 +248,7 @@ const addTestTube = colorHex => {
     slider.setAttribute('class', 'slider');
     slider.addEventListener('input', e => changeSliderValue(e.target, colorHex));
     slider.addEventListener('change', e => updateOtherSliders(e.target));
+    slider.addEventListener('touchmove', e => testTubeTouchMove(e));
     newElement.appendChild(slider);
     resetHeight();
     p.appendChild(newElement);
@@ -387,7 +388,6 @@ const postColors = () => {
     });
 
 
-
     let string = 'https://ml2wqc35jk.execute-api.ap-south-1.amazonaws.com/api/palette/?cprofile=';
     selectedColors.forEach((t, i) => {
         string += '*';
@@ -411,4 +411,8 @@ const postColors = () => {
         }
     };
     request.send(uri);
+};
+
+const testTubeTouchMove = function (event) {
+    console.log(event);
 };
